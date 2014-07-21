@@ -6,12 +6,12 @@ package main
 
 import (
 	`fmt`
-	`github.com/Hellyna/whois`
+	`github.com/Hellyna/go-whois`
 	`os`
 )
 
 func main() {
-	res, err := Whois(os.Args[1])
+	res, err := whois.Whois(os.Args[1])
 
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
