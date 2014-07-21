@@ -2,15 +2,13 @@ package whois
 
 import (
 	`fmt`
-	`net`
 	`io`
+	`net`
 	`regexp`
 )
 
 var iana_regexp = regexp.MustCompile(
 	`whois:\s+([a-zA-Z0-9.-]+)`)
-//var iana_regexp = regexp.MustCompile(
-//	`domain:\s+([A-Z]+)\s*`)
 
 func whois(domain, server string) (string, error) {
 	conn, err := net.Dial(`tcp`, server+`:43`)
@@ -44,7 +42,7 @@ func get_tld(domain string) string {
 	var tld string
 	for i := strlen - 1; i >= 0; i-- {
 		if domain[i] == '.' {
-			tld = domain[i+1:strlen]
+			tld = domain[i+1 : strlen]
 			break
 		}
 	}
@@ -64,7 +62,7 @@ func Whois(domain string) (string, error) {
 
 	if matches == nil || len(matches) < 2 {
 		return ``, fmt.Errorf(
-			`iana_regexp cannot find any matches of domain or whois`)
+			`iana_regexp cannot find any matches of whois entry`)
 	}
 
 	res, err = whois(domain, matches[1])
